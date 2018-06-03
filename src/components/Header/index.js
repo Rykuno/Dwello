@@ -8,6 +8,7 @@ import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import styled from 'styled-components';
+import { NavLink } from 'react-router-dom';
 
 const LeftNav = styled.div`
   display: flex;
@@ -15,6 +16,7 @@ const LeftNav = styled.div`
   align-items: center;
   justify-content: start;
   flex: 9;
+  margin-left: 20px;
 `;
 
 const RightNav = styled.div`
@@ -24,51 +26,37 @@ const RightNav = styled.div`
   flex: 1;
 `;
 
-const styles = {
-  root: {
-    flexGrow: 1,
-  },
-  flex: {
-    flex: 1
-  },
-  menuButton: {
-    marginLeft: -12,
-    marginRight: 20
-  },
-  leftNav: {
-    marginLeft: 20,
-    flex: 9,
-    flexDirection: 'row',
-    justifyContent: 'center'
-  }
-};
+const NavButton = styled(Button)`
+  margin-left: 10px;
+`;
 
-function ButtonAppBar(props) {
-  const { classes } = props;
-  return (
-    <div className={classes.root}>
-      <AppBar position="static">
-        <Toolbar>
-          <Typography variant="title" color="inherit">
-            Dwello
-          </Typography>
-          <LeftNav>
-            <Button color="inherit">Home</Button>
-            <Button color="inherit">TODO</Button>
-          </LeftNav>
-          <RightNav>
-            <Button color="inherit">
-              Login
-            </Button>
-          </RightNav>
-        </Toolbar>
-      </AppBar>
-    </div>
-  );
-}
+const Wrapper = styled.div`
+  flex-grow: 1;
+`;
 
-ButtonAppBar.propTypes = {
-  classes: PropTypes.object.isRequired
-};
+const Header = () => (
+  <Wrapper>
+    <AppBar position="static">
+      <Toolbar>
+        <Typography variant="title" color="inherit">
+          Dwello
+        </Typography>
+        <LeftNav>
+          <NavButton color="inherit" href="/">
+            Home
+          </NavButton>
+          <NavButton color="inherit" href="/todo">
+            TODO
+          </NavButton>
+        </LeftNav>
+        <RightNav>
+          <NavButton color="inherit" href="/login">
+            Login
+          </NavButton>
+        </RightNav>
+      </Toolbar>
+    </AppBar>
+  </Wrapper>
+);
 
-export default withStyles(styles)(ButtonAppBar);
+export default Header;
